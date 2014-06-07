@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+	<wxWidgets_DIR>$(SolutionDir)\..\thirdparty\wxWidgets-3.0.0</wxWidgets_DIR>
+    <ShortPlatform Condition="'$(Platform)' == 'Win32'"></ShortPlatform>
+    <ShortPlatform Condition="'$(Platform)' == 'x64'">_x64</ShortPlatform>
+    <DebugSuffix Condition="'$(Configuration)'=='Debug'">d</DebugSuffix>
+    <DebugSuffix Condition="'$(Configuration)'!='Debug'"></DebugSuffix>
+	<wxWidgets_Lib_DIR>$(wxWidgets_DIR)\lib\vc$(ShortPlatform)_lib\</wxWidgets_Lib_DIR>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(wxWidgets_DIR)\lib\vc$(ShortPlatform)_lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(wxWidgets_DIR)\lib\vc$(ShortPlatform)_lib\mswu$(DebugSuffix);$(wxWidgets_DIR)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+	  <PreprocessorDefinitions>__WXMSW__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="wxWidgets_DIR">
+      <Value>$(wxWidgets_DIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
